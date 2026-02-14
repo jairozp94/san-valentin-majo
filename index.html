@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Majo ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+font-family: Arial, sans-serif;
+background:#e0c2ff;
+color:#4a2c2a;
+}
+
+header{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("img/portada.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+header h1{
+font-size:3em;
+}
+
+
+section{
+padding:50px 20px;
+max-width:900px;
+margin:auto;
+}
+
+.frase{
+background:white;
+padding:20px;
+margin:15px 0;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+.galeria {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.galeria img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#ffd143;
+}
+
+.flecha{
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3em;
+  color: white;
+  animation: bajar 1.5s infinite;
+  opacity: 0.8;
+}
+
+@keyframes bajar {
+  0% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 10px); }
+  100% { transform: translate(-50%, 0); }
+}
+
+.corazon {
+    position: fixed;
+    top: -10px;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: caer linear forwards;
+    z-index: 1;
+}
+
+@keyframes caer {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+
+.fade {
+    animation: fade 0.4s ease;
+}
+
+@keyframes fade {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div id="visorImagen" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+z-index:999;
+">
+
+<img id="imagenGrande" src="" style="
+max-width:90%;
+max-height:90%;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+cursor:pointer;
+">
+</div>
+
+
+<div id="popupFondo" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+    <div id="popup" style="background:white; padding:30px; border-radius:20px; max-width:400px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <p id="popupTexto" style="font-size:1.1em;"></p>
+        <button onclick="cerrarPopup()" style="margin-top:20px; padding:10px 20px; border:none; border-radius:20px; background:#f8c8dc; font-size:1em; cursor:pointer;">
+            ❤️ Cerrar
+        </button>
+    </div>
+</div>
+
+
+<audio id="musica" autoplay loop muted>
+  <source src="audio/perfect.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.addEventListener("click", function () {
+    const audio = document.getElementById("musica");
+    audio.muted = false;
+    audio.play();
+  }, { once: true });
+</script>
+
+
+
+<header>
+<div>
+<h1>Feliz San Valentín, Majo ❤️</h1>
+<p>Mi lugar seguro, mi amor de todos los días y la persona con la que elijo todo</p>
+</div>
+</header>
+<div class="flecha">
+  💖
+</div>
+
+
+<section>
+<h2>Lo que siento por vos</h2>
+
+<div class="frase" onclick="mostrarMensaje('Gracias por caminar a mi lado incluso cuando no fue fácil. Siempre en las buenas, y en las malas muchisimo más. Te amo.')">
+💖 Gracias por ser mi compañera de vida.
+</div>
+
+<div class="frase" onclick="mostrarMensaje('Cada día con vos me recuerda que elegí bien. Sos mi hogar webita.')">
+✨ Cada día a tu lado es un regalo.
+</div>
+
+<div class="frase" onclick="mostrarMensaje('Mi amor por vos no tiene pausa, ni final, ni condiciones, es tan magico como una probada de crema de pistacho jaja.')">
+🔥 Te amo más de lo que puedo explicar.
+</div>
+
+<div class="frase" onclick="mostrarMensaje('Hoy, mañana, en esta vida y en todas las que sigan, siempre serás MI ONE PIECE ☠️💖.')">
+💍 Te elijo hoy y siempre.
+</div>
+
+</section>
+
+<section>
+<h2>Nuestros recuerdos</h2>
+
+<div class="galeria">
+<img src="img/1.jpg" onclick="abrirImagen(this.src)">
+<img src="img/2.jpg" onclick="abrirImagen(this.src)">
+<img src="img/3.jpg" onclick="abrirImagen(this.src)">
+<img src="img/4.jpg" onclick="abrirImagen(this.src)">
+<img src="img/5.jpg" onclick="abrirImagen(this.src)">
+<img src="img/6.jpg" onclick="abrirImagen(this.src)">
+<img src="img/7.jpg" onclick="abrirImagen(this.src)">
+<img src="img/8.jpg" onclick="abrirImagen(this.src)">
+<img src="img/9.jpg" onclick="abrirImagen(this.src)">
+<img src="img/10.jpg" onclick="abrirImagen(this.src)">
+<img src="img/11.jpg" onclick="abrirImagen(this.src)">
+<img src="img/12.jpg" onclick="abrirImagen(this.src)">
+</div>
+
+</section>
+
+
+<section>
+<h2>Para vos</h2>
+<div class="frase">
+Majo,<br><br>
+Quería hacer esto porque sos inmensamente importante para mí. Porque te amo más de lo que a veces logro decirte y porque todo lo que construimos juntos tiene un valor enorme para mí. Gracias por nuestra familia hermosa, por elegirme cada día y porque a tu lado aprendo constantemente a ser mejor. Todo lo que soy y todo lo que sueño, te incluye.<br><br>
+Te amo con todo mi corazón ❤️
+</div>
+</section>
+
+<footer>
+Hecho con muchisimo amor para mi esposita 💕
+</footer>
+
+<script>
+
+function cambiarImagen(){
+    const img = document.getElementById("imagenGrande");
+    img.classList.remove("fade"); // reinicia animación
+    void img.offsetWidth;         // truco para que vuelva a arrancar
+    img.classList.add("fade");
+    img.src = imagenes[imagenActual];
+}
+
+function siguienteImagen(){
+    imagenActual++;
+    if(imagenActual >= imagenes.length){
+        imagenActual = 0;
+    }
+    cambiarImagen();
+}
+
+function anteriorImagen(){
+    imagenActual--;
+    if(imagenActual < 0){
+        imagenActual = imagenes.length - 1;
+    }
+    cambiarImagen();
+}
+
+
+const imagenes = [
+  "img/1.jpg",
+  "img/2.jpg",
+  "img/3.jpg",
+  "img/4.jpg",
+  "img/5.jpg",
+  "img/6.jpg",
+  "img/7.jpg",
+  "img/8.jpg",
+  "img/9.jpg",
+  "img/10.jpg",
+  "img/11.jpg",
+  "img/12.jpg"
+];
+
+let imagenActual = 0;
+
+
+function abrirImagen(src){
+    document.getElementById("imagenGrande").src = src;
+    document.getElementById("visorImagen").style.display = "flex";
+}
+
+document.getElementById("visorImagen").onclick = function(){
+    this.style.display = "none";
+}
+
+
+
+function mostrarMensaje(texto){
+    document.getElementById("popupTexto").innerText = texto;
+    document.getElementById("popupFondo").style.display = "flex";
+}
+
+function cerrarPopup(){
+    document.getElementById("popupFondo").style.display = "none";
+}
+
+setInterval(() => {
+    const corazon = document.createElement("div");
+    corazon.classList.add("corazon");
+    corazon.innerText = "❤️";
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 6000);
+}, 500);
+
+
+</script>
+
+
+
+</body>
+</html>
